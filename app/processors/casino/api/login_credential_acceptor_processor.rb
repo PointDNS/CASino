@@ -32,7 +32,7 @@ class CASino::API::LoginCredentialAcceptorProcessor < CASino::Processor
     validate_confirm_data
     unless @authentication_result.nil?
       generate_ticket_granting_ticket
-      return [" "]
+      return [@ticket_granting_ticket.ticket]
     else
       return nil
     end
