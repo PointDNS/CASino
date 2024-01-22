@@ -6,7 +6,7 @@ describe CASino::ServiceTicketsController do
     it 'calls the process method of the LegacyValidator' do
       CASino::LegacyValidatorProcessor.any_instance.should_receive(:process).with(kind_of(Hash)) do |params|
         params.should == controller.params
-        controller.render nothing: true
+        controller.render body: nil
       end
       get :validate, params
     end
@@ -17,7 +17,7 @@ describe CASino::ServiceTicketsController do
     it 'calls the process method of the LegacyValidator' do
       CASino::ServiceTicketValidatorProcessor.any_instance.should_receive(:process).with(kind_of(Hash)) do |params|
         params.should == controller.params
-        controller.render nothing: true
+        controller.render body: nil
       end
       get :service_validate, params
     end
