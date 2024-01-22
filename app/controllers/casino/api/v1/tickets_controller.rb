@@ -25,7 +25,7 @@ class CASino::Api::V1::TicketsController < CASino::ApplicationController
   end
 
   def granted_service_ticket_via_api(service_ticket)
-    render text: service_ticket, status: 200, content_type: Mime[:text]
+    render plain: service_ticket, status: 200, content_type: Mime[:text]
   end
 
   def invalid_ticket_granting_ticket_via_api
