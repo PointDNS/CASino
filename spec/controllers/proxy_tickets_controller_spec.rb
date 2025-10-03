@@ -6,7 +6,7 @@ describe CASino::ProxyTicketsController do
     it 'calls the process method of the ProxyTicketValidator' do
       CASino::ProxyTicketValidatorProcessor.any_instance.should_receive(:process).with(kind_of(Hash)) do |params|
         params.should == controller.params
-        controller.render nothing: true
+        controller.render body: nil
       end
       get :proxy_validate, params
     end
@@ -17,7 +17,7 @@ describe CASino::ProxyTicketsController do
     it 'calls the process method of the ProxyTicketProvider' do
       CASino::ProxyTicketProviderProcessor.any_instance.should_receive(:process).with(kind_of(Hash)) do |params|
         params.should == controller.params
-        controller.render nothing: true
+        controller.render body: nil
       end
       get :create, params
     end

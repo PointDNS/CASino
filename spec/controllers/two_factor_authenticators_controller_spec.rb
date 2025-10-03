@@ -11,7 +11,7 @@ describe CASino::TwoFactorAuthenticatorsController do
   describe 'POST "create"' do
     it 'calls the process method of the TwoFactorAuthenticatorActivator' do
       CASino::TwoFactorAuthenticatorActivatorProcessor.any_instance.should_receive(:process) do
-        @controller.render nothing: true
+        @controller.render body: nil
       end
       post :create, use_route: :casino
     end
@@ -26,7 +26,7 @@ describe CASino::TwoFactorAuthenticatorsController do
         params[:id].should == id
         cookies[:tgt].should == tgt
         user_agent.should == request.user_agent
-        @controller.render nothing: true
+        @controller.render body: nil
       end
       delete :destroy, id:id, use_route: :casino
     end

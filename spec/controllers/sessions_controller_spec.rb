@@ -11,7 +11,7 @@ describe CASino::SessionsController do
   describe 'POST "create"' do
     it 'calls the process method of the LoginCredentialAcceptor' do
       CASino::LoginCredentialAcceptorProcessor.any_instance.should_receive(:process) do
-        @controller.render nothing: true
+        @controller.render body: nil
       end
       post :create, use_route: :casino
     end
@@ -20,7 +20,7 @@ describe CASino::SessionsController do
   describe 'POST "validate_otp"' do
     it 'calls the process method of the SecondFactorAuthenticatonAcceptor' do
       CASino::SecondFactorAuthenticationAcceptorProcessor.any_instance.should_receive(:process) do
-        @controller.render nothing: true
+        @controller.render body: nil
       end
       post :validate_otp, use_route: :casino
     end
@@ -54,7 +54,7 @@ describe CASino::SessionsController do
         params[:id].should == id
         cookies[:tgt].should == tgt
         user_agent.should == request.user_agent
-        @controller.render nothing: true
+        @controller.render body: nil
       end
       delete :destroy, id:id, use_route: :casino
     end
@@ -63,7 +63,7 @@ describe CASino::SessionsController do
   describe 'GET "destroy_others"' do
     it 'calls the process method of the OtherSessionsDestroyer' do
       CASino::OtherSessionsDestroyerProcessor.any_instance.should_receive(:process) do
-        @controller.render nothing: true
+        @controller.render body: nil
       end
       get :destroy_others, use_route: :casino
     end
